@@ -1,0 +1,56 @@
+@import 'init';
+
+/******************************************************
+* MAIN.SCSS
+*	Main site element styles go in this file.
+*	Iclude styles for primary elements that are
+*	used site wide (a, h1, p, body, etc).
+\******************************************************/
+
+$grid-float-breakpoint: 768px;
+
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $grid-float-breakpoint) { @content; }
+  }
+}
+
+
+body {
+	@include BodyCopy;
+}
+
+.navbar-brand{
+	padding-top: 9px;
+	padding-bottom: 9px;
+}
+
+.caracol-logo{
+	background: url("/_/img/logo.svg") no-repeat center;
+	height: 150px;
+	width: 100%;
+	//background-color: #36a2db; // #009720, #fd0901
+	padding: 80px;
+	-webkit-animation: logoBackground 15s alternate infinite;
+	animation: logoBackground 15s alternate infinite;
+	
+	 @include respond-to(handhelds) {
+		 height: 34px;
+		 width: 42px;
+		 padding: 0;
+		 border-radius: 4px;
+		 background: url("/_/img/logo-xs.svg") no-repeat center;
+	}
+}
+
+/* Standard syntax */
+@-webkit-keyframes logoBackground {
+    0%   {background-color: #36a2db}
+    50%  {background-color: #009720}
+    100% {background-color: #fd0901}
+}
+@keyframes logoBackground {
+    0%   {background-color: #36a2db}
+    50%  {background-color: #009720}
+    100% {background-color: #fd0901}
+}
