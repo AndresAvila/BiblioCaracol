@@ -552,3 +552,4 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !\.php$
 RewriteRule ^(.*)$ $1.php [L]
+DirectoryIndex index.php
