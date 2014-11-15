@@ -24,12 +24,24 @@
 		case 'ccc':
 			define("CONTACT_EMAIL", "");
 			define("ANALYTICS_ID", "");
+			define("DB_HOST", "localhost");
+			define("DB_USER", "ccc");
+			define("DB_PASS", "devccc");
+			define("DB_SCHEMA", "BiblioCaracol");
 			break;
 		
 		case 'ccc.i2d.in':
 			define("CONTACT_EMAIL", "");
 			define("ANALYTICS_ID", "");
 			break;
+	}
+
+	// Create connection
+	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_SCHEMA);
+
+	// Check connection
+	if ($db->connect_error) {
+    	die("Connection failed: " . $conn->connect_error);
 	}
 
 ?>

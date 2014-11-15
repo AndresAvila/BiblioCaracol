@@ -76,4 +76,9 @@
 		return false;
 	}
 
+	function getAutor($id){
+		global $db;
+		$query = $db->query("SELECT * From Autores WHERE idAutor IN (SELECT Autores_idAutor FROM Contenido WHERE idContenido = '$id')");
+		return $query->fetch_object();
+	}
 ?>

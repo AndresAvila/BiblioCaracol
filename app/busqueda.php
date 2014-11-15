@@ -9,41 +9,39 @@
     <title></title>
     <meta name="description" content="">
     <?php require("_/inc/head.php"); ?>
+	<!-- build:css({.tmp,app}) /_/css/table.css -->
+		<link rel="stylesheet" href="/_/css/table.css">
+	<!-- endbuild -->
 </head>
 <body>
 	<?php require('_/inc/header.php'); ?>
 	<div id="PageBody">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-					<h1>Busqueda</h1>
-				</div>
-			</div>
-			<form>
-				<div class="row">
-					<div class="col-md-2 col-md-offset-2">
-						<select class="form-control">
-							<option>Todo</option>
-							<option>Titulo</option>
-							<option>Autor</option>
-							<option>Tema</option>
-							<option>Genero</option>
-						</select>
-					</div>
-					<div class="col-md-5">
-							<input type="text" class="form-control">
-					</div><!-- /.col-lg-6 -->
-					<div class="col-md-1">
-						<button type="button" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
-					</div>
-				</div>
-				<div class="row">&nbsp;</div>
-				<div class="row text-center">
-					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
-				</div>
-			</form>
-		</div>
-
+		<table>
+			<tr>
+				<th>Nombre</th>
+				<th>Autor</th>
+				<th>Tipo</th>
+				<th>Editorial</th>
+				<th>ISBN</th>
+				<th>Idioma</th>
+				<th>Fecha de Pubicación</th>
+			</tr>
+		<?php
+			$query = $db->query("SELECT * FROM Contenido");
+			while($res = $query->fetch_object()){ ?>
+				<tr>
+					<td><?=$res->Nombre;?></td>
+					<td><?=getAutor($res->idContenido)->Nombre;?></td>
+					<td><?=$res->Tipo;?></td>
+					<td><?=$res->Editorial;?></td>
+					<td><?=$res->UPC;?></td>
+					<td><?=$res->Idioma;?></td>
+					<td><?=$res->FechaPublicacion;?></td>
+				</tr>
+			<?php }
+		?>
+		</table>
+	</div>
     <!--[if lt IE 9]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. 
         Please <a href="http://browsehappy.com/">upgrade your browser</a> 
