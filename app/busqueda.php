@@ -24,7 +24,7 @@
 				<th>Editorial</th>
 				<th>ISBN</th>
 				<th>Idioma</th>
-				<th>Fecha de Pubicación</th>
+				<th>Fecha de Publicación</th>
 			</tr>
 		<?php
 			$query = $db->query("SELECT * FROM Contenido");
