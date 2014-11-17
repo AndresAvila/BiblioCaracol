@@ -30,7 +30,7 @@
 <div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form role="form" method="post" name="loginForm">
+			<form role="form" method="post" name="newUserForm">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 					<h4 class="modal-title">Nuevo usuario</h4>
@@ -42,14 +42,14 @@
 					</div>
 					<div class="form-group">
 						<label for="username">E-mail:</label>
-						<input type="text" class="form-control" name="mail" placeholder="Escribe tu e-mail">
+						<input type="mail" class="form-control" name="mail" placeholder="Escribe tu e-mail">
 					</div>
 					<div class="form-group">
 						<label for="password">Contraseña</label>
 						<input type="password" class="form-control" name="password" placeholder="Contraseña">
 						<?=(($loginError)?'<p class="help-block">Usuario o contraseña equivocada</p>':'');?>
 					</div>
-					<input type="hidden" name="loginAction">
+					<input type="hidden" name="newUserAction">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -84,16 +84,28 @@
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="btn-group">
+						<?php if(isset($_SESSION['uid'])) {?>
+							<button  class="btn btn-primary"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?=$_SESSION['username'];?></button>
+							<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="/logout.php">Salir</a></li>
+							</ul>
+						<?php }else{ ?>
 						<button data-toggle="modal" data-target="#loginModal" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Acceder</button>
-						<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-							<span class="caret"></span>
-							<span class="sr-only">Toggle Dropdown</span>
-						</button>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#" data-toggle="modal" data-target="#accountModal">Nuevo usuario</a></li>
-						</ul>
+							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#" data-toggle="modal" data-target="#accountModal">Nuevo usuario</a></li>
+							</ul>
+						<?php } ?>
 					</div>
 				</form>
+
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>

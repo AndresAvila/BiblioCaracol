@@ -34,9 +34,10 @@
 			if(!$res==null){
 //				if(!function_exists('password_verify'))
 //					require_once $_SERVER['DOCUMENT_ROOT'].'/lib/password.php';
-				if(password_verify($pwd,$res->contrasena)){
-					session_start();
+				$pass = $_POST['password'];
+				if(password_verify($pass,$res->Contrasena)){
 					$_SESSION['uid'] = $res->idUsuario;
+					$_SESSION['username'] = $res->Nombre;
 				}else
 					$loginError = true;
 
@@ -46,5 +47,8 @@
 
 		}else
 			$loginError = true;
+	}
+	if(isset($_POST['newUserAction'])){
+		require_once("_/inc/nuevoUsuario.php");
 	}
 ?>
