@@ -10,6 +10,7 @@
         <script src="/_/bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <!-- endbuild -->
 
+<?=(($loginError)?'<script type="text/javascript">$(\'#loginModal\').modal();</script>':'');?>
 
 <!-- build:remove:dist -->
 <script src="//ccc:1025/livereload.js"></script>

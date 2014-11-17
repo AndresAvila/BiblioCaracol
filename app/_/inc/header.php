@@ -1,3 +1,65 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form role="form" method="post" name="loginForm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Acceder</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="username">Usuario:</label>
+						<input type="text" class="form-control" name="username" placeholder="Escribe tu nombre de usuario">
+					</div>
+					<div class="form-group">
+						<label for="password">Contraseña</label>
+						<input type="password" class="form-control" name="password" placeholder="Contraseña">
+						<?=(($loginError)?'<p class="help-block">Usuario o contraseña equivocada</p>':'');?>
+					</div>
+					<input type="hidden" name="loginAction">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Acceder</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade" id="accountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form role="form" method="post" name="loginForm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">Nuevo usuario</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="username">Usuario:</label>
+						<input type="text" class="form-control" name="username" placeholder="Escribe tu nombre de usuario">
+					</div>
+					<div class="form-group">
+						<label for="username">E-mail:</label>
+						<input type="text" class="form-control" name="mail" placeholder="Escribe tu e-mail">
+					</div>
+					<div class="form-group">
+						<label for="password">Contraseña</label>
+						<input type="password" class="form-control" name="password" placeholder="Contraseña">
+						<?=(($loginError)?'<p class="help-block">Usuario o contraseña equivocada</p>':'');?>
+					</div>
+					<input type="hidden" name="loginAction">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-primary">Crear</button>
+				</div>
+			</form>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <header id="SiteHeader">
 	<div class="caracol-logo hidden-xs" ></div>
 	<nav class="navbar navbar-default" role="navigation">
@@ -21,10 +83,20 @@
 					<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidios</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
-					<button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Acceder</button>
+					<div class="btn-group">
+						<button data-toggle="modal" data-target="#loginModal" class="btn btn-success"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Acceder</button>
+						<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+							<span class="caret"></span>
+							<span class="sr-only">Toggle Dropdown</span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#" data-toggle="modal" data-target="#accountModal">Nuevo usuario</a></li>
+						</ul>
+					</div>
 				</form>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
 </header>
-		
+
+

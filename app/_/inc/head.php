@@ -24,3 +24,27 @@
 <script src="/_/bower_components/respond/respond.min.js"></script>
 <![endif]-->
 <!-- endbuild -->
+
+<?php
+	$loginError = false;
+	if(isset($_POST['loginAction'])){
+		$query = $db->query("SELECT * FROM Usuarios WHERE Nombre = '".$_POST['username']."'");
+		if($query){
+			$res=$query->fetch_object();
+			if(!$res==null){
+//				if(!function_exists('password_verify'))
+//					require_once $_SERVER['DOCUMENT_ROOT'].'/lib/password.php';
+				if(password_verify($pwd,$res->contrasena)){
+					session_start();
+					$_SESSION['uid'] = $res->idUsuario;
+				}else
+					$loginError = true;
+
+			}else{
+				$loginError = true;
+			}
+
+		}else
+			$loginError = true;
+	}
+?>
