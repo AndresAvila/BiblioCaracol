@@ -27,11 +27,11 @@
 				<th>Fecha de Publicación</th>
 			</tr>
 		<?php
-			$query = $db->query("SELECT * FROM Contenido");
+			$query = $db->query("SELECT Nombre, (select a.nombre from Autores a where a.idAutor = contenido.Autores_idAutor) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido");
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->Nombre;?></td>
-					<td><?=getAutor($res->idContenido)->Nombre;?></td>
+					<td><?=$res->Autor?></td>
 					<td><?=$res->Tipo;?></td>
 					<td><?=$res->Editorial;?></td>
 					<td><?=$res->UPC;?></td>

@@ -18,25 +18,13 @@
 	<div id="PageBody">
 		<table>
 			<tr>
-				<th>Nombre</th>
-				<th>Autor</th>
-				<th>Tipo</th>
-				<th>Editorial</th>
-				<th>ISBN</th>
-				<th>Idioma</th>
-				<th>Fecha de Publicación</th>
+				<th>Nombre Usuario</th>
 			</tr>
 		<?php
-			$query = $db->query("SELECT * FROM Contenido");
+			$query = $db->query("select (select u.Nombre from Usuarios u where Usuarios_idUsuario = u.idUsuario) as NombreUsuario from pedidos");
 			while($res = $query->fetch_object()){ ?>
 				<tr>
-					<td><?=$res->Nombre;?></td>
-					<td><?=getAutor($res->idContenido)->Nombre;?></td>
-					<td><?=$res->Tipo;?></td>
-					<td><?=$res->Editorial;?></td>
-					<td><?=$res->UPC;?></td>
-					<td><?=$res->Idioma;?></td>
-					<td><?=$res->FechaPublicacion;?></td>
+					<td><?=$res->NombreUsuario;?></td>
 				</tr>
 			<?php }
 		?>
