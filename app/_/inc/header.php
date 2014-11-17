@@ -80,7 +80,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/busqueda"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</a></li>
 					<li><a href="/rentas"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Rentas</a></li>
-					<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidios</a></li>
+					<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidos</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="btn-group">
