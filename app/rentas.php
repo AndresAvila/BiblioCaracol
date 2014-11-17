@@ -34,7 +34,7 @@
                 <td><?=$res->idPrestamo;?></td>
                 <td><?=$res->Nombre;?></td>
                 <td><?=$res->FechaPrestamo;?></td>    
-                <td><?=$res->FechaDeavuelto;?></td>
+                <td><?=$res->FechaDevuelto;?></td>
             </tr>
         <?php }
         ?>
