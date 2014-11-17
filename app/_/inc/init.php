@@ -20,21 +20,7 @@
 	setSectionInfo();
 
 	//SET SERVER SPECIFIC VARIABLES AND CONSTANTS
-	switch ($ServerName) {
-		case 'ccc':
-			define("CONTACT_EMAIL", "");
-			define("ANALYTICS_ID", "");
-			define("DB_HOST", "localhost");
-			define("DB_USER", "ccc");
-			define("DB_PASS", "devccc");
-			define("DB_SCHEMA", "BiblioCaracol");
-			break;
-		
-		case 'ccc.i2d.in':
-			define("CONTACT_EMAIL", "");
-			define("ANALYTICS_ID", "");
-			break;
-	}
+	require_once("_/inc/localVars.php");
 
 	// Create connection
 	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_SCHEMA);
