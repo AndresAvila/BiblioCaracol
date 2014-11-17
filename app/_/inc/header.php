@@ -78,7 +78,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="/"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</a></li>
+					<li><a href="/busqueda"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</a></li>
 					<li><a href="/rentas"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Rentas</a></li>
 					<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidios</a></li>
 				</ul>
