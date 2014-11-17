@@ -81,4 +81,15 @@
 		$query = $db->query("SELECT * From Autores WHERE idAutor IN (SELECT Autores_idAutor FROM Contenido WHERE idContenido = '$id')");
 		return $query->fetch_object();
 	}
+
+	function checkInput($value){
+		global $db;
+		if (get_magic_quotes_gpc()){
+		  $value = stripslashes($value);
+		}
+		if (!is_numeric($value)){
+			$value =$db->real_escape_string($value);
+		}
+		return $value;
+	}
 ?>
