@@ -79,8 +79,25 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="/index"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Busqueda</a></li>
-					<li><a href="/rentas"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Rentas</a></li>
-					<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidos</a></li>
+					<?php if(isset($_SESSION['uid'])) {?>
+						<li><a href="/rentas"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Rentas</a></li>
+						<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidos</a></li>
+					<?php  if($_SESSION['admin']) {?>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Administración <span class="caret"></span></a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="/admin/nuevoContenido">Nuevo Contenido</a></li>
+									<li><a href="/admin/editarContenido">Editar Contenido</a></li>
+									<li class="divider"></li>
+									<li><a href="/admin/rentas">Rentas</a></li>
+									<li><a href="/admin/pedidos">Pedidos</a></li>
+									<li class="divider"></li>
+									<li><a href="/admin">Cambiar contraseña a usuario</a></li>
+									<li><a href="/admin">Modificar usuario</a></li>
+								</ul>
+							</li>
+						<?php }
+					}?>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="btn-group">

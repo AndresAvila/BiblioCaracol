@@ -38,6 +38,7 @@
 				if(password_verify($pass,$res->Contrasena)){
 					$_SESSION['uid'] = $res->idUsuario;
 					$_SESSION['username'] = $res->Nombre;
+					$_SESSION['admin'] = $res->Admin;
 				}else
 					$loginError = true;
 
