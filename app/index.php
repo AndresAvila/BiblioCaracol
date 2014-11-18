@@ -23,7 +23,7 @@
 				<div id="searchParams">
 					<div class="row">
 						<div class="col-md-2 col-md-offset-2">
-							<select class="form-control">
+							<select class="form-control" name="tipo1">
 								<option>Todo</option>
 								<option>Titulo</option>
 								<option>Autor</option>
@@ -32,7 +32,7 @@
 							</select>
 						</div>
 						<div class="col-md-5">
-								<input type="text" class="form-control searchParamText">
+								<input type="text" class="form-control searchParamText" name="texto1">
 						</div><!-- /.col-lg-6 -->
 						<div class="col-md-1">
 							<button type="button" class="addParam btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
@@ -41,6 +41,7 @@
 					<div class="row">&nbsp;</div>
 				</div>
 				<div class="row text-center">
+					<input type="hidden" id="entradas" name="entradas" value="1">
 					<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
 				</div>
 			</form>
