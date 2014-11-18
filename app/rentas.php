@@ -6,32 +6,35 @@
 <!--[if IE 9]>         <html class="no-js ie ie9 lt-ie10"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <title>Centro Cultural Caracol</title>
+ <title></title>
     <meta name="description" content="">
     <?php require("_/inc/head.php"); ?>
-
-    <link rel="stylesheet" href="/_/css/table.css">
-
+    <!-- build:css({.tmp,app}) /_/css/table.css -->
+        <link rel="stylesheet" href="/_/css/table.css">
+    <!-- endbuild -->
 </head>
 <body>
 	<?php require('_/inc/header.php'); ?>
     <div id="PageBody">
-        <table>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 text-center">
+                    <h1>Tus Rentas</h1>
+                </div>
+            </div>
+            <table>
             <tr>
-                <th>id Préstamo</th>
                 <th>Título</th>
                 <th>Fecha Préstamo</th>
                 <th>Fecha Devuelto</th>
             </tr>
-        <?php
-            $query = $db->query("SELECT Prestamos.*, Contenido.Nombre 
+                <?php $query = $db->query("SELECT Prestamos.*, Contenido.Nombre 
                     FROM Contenido, Prestamos_has_Copia, Usuarios, Prestamos
-                    WHERE Usuarios.idUsuario = Prestamos.Usuarios_idUsuario
+                    WHERE Usuarios.idUsuario = '".$_SESSION["uid"]."'
                     AND Prestamos.idPrestamo = Prestamos_has_Copia.Prestamos_idPrestamo
                     AND Prestamos_has_Copia.Copia_Contenido_idContenido = Contenido.idContenido");
-            while($res = $query->fetch_object()){ ?>
+                while($res = $query->fetch_object()){ ?>
             <tr>
-                <td><?=$res->idPrestamo;?></td>
                 <td><?=$res->Nombre;?></td>
                 <td><?=$res->FechaPrestamo;?></td>    
                 <td><?=$res->FechaDevuelto;?></td>
@@ -39,6 +42,7 @@
         <?php }
         ?>
         </table>
+        </div>
     </div>
 
     <!--[if lt IE 9]>
@@ -53,8 +57,6 @@
     <?php require('_/inc/analytics.php'); ?>
 		
     <?php require('_/inc/tail.php'); ?>
-	<!-- build:js /_/js/index.js -->
-		<script src="/_/js/busqueda.js"></script>
-	<!-- endbuild -->
+
 </body>
 </html>

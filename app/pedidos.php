@@ -6,12 +6,12 @@
 <!--[if IE 9]>         <html class="no-js ie ie9 lt-ie10"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <title></title>
+    <title>Centro Cultural Caracol</title>
     <meta name="description" content="">
     <?php require("_/inc/head.php"); ?>
-	<!-- build:css({.tmp,app}) /_/css/table.css -->
-		<link rel="stylesheet" href="/_/css/table.css">
-	<!-- endbuild -->
+
+    <link rel="stylesheet" href="/_/css/table.css">
+    
 </head>
 <body>
 	<?php require('_/inc/header.php'); ?>
