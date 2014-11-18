@@ -27,7 +27,7 @@
 				<th>Fecha de Publicación</th>
 			</tr>
 		<?php
-			$query = $db->query("SELECT Nombre, (select a.nombre from Autores a where a.idAutor = contenido.Autores_idAutor) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido");
+			$query = $db->query("SELECT Nombre, (select a.Nombre from Autores a where a.idAutor = Contenido.Autores_idAutor) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido");
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->Nombre;?></td>

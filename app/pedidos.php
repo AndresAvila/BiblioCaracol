@@ -21,7 +21,7 @@
 				<th>Nombre Usuario</th>
 			</tr>
 		<?php
-			$query = $db->query("select (select u.Nombre from Usuarios u where Usuarios_idUsuario = u.idUsuario) as NombreUsuario from pedidos");
+			$query = $db->query("select (select u.Nombre from Usuarios u where Usuarios_idUsuario = u.idUsuario) as NombreUsuario from Pedidos");
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->NombreUsuario;?></td>
