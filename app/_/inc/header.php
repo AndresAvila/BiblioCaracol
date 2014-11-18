@@ -92,8 +92,8 @@
 									<li><a href="/admin/rentas">Rentas</a></li>
 									<li><a href="/admin/pedidos">Pedidos</a></li>
 									<li class="divider"></li>
-									<li><a href="/admin">Cambiar contraseña a usuario</a></li>
-									<li><a href="/admin">Modificar usuario</a></li>
+									<li><a href="/admin/cambiarContrasena">Cambiar contraseña a usuario</a></li>
+									<li><a href="/admin/modificarUsuario">Modificar usuario</a></li>
 								</ul>
 							</li>
 						<?php }
