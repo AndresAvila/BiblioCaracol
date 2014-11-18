@@ -81,7 +81,7 @@
 					<li><a href="/index"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Búsqueda</a></li>
 					<?php if(isset($_SESSION['uid'])) {?>
 						<li><a href="/rentas"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Rentas</a></li>
-						<li><a href="/pedidos"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidos</a></li>
+						<li><a href="/realizapedido"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Pedidos</a></li>
 					<?php  if($_SESSION['admin']) {?>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Administración <span class="caret"></span></a>
