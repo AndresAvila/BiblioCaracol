@@ -28,7 +28,7 @@
 <?php
 	$loginError = false;
 	if(isset($_POST['loginAction'])){
-		$query = $db->query("SELECT * FROM Usuarios WHERE Nombre = '".$_POST['username']."'");
+		$query = $db->query("SELECT * FROM Usuarios WHERE Nombre = '".checkInput($_POST['username'])."'");
 		if($query){
 			$res=$query->fetch_object();
 			if(!$res==null){
