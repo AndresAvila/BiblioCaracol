@@ -24,6 +24,7 @@
 
 	// Create connection
 	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_SCHEMA);
+	$db->set_charset("utf8");
 
 	// Check connection
 	if ($db->connect_error) {

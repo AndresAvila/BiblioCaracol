@@ -8,6 +8,7 @@
 
         <!-- build:js(app) /_/js/bootstrap.js -->
         <script src="/_/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="/_/bower_components/typehead.js/dist/typeahead.bundle.js"></script>
         <!-- endbuild -->
 
 <?=(($loginError)?'<script type="text/javascript">$(\'#loginModal\').modal();</script>':'');?>
