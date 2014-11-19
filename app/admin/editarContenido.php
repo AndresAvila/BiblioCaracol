@@ -18,7 +18,7 @@
 			if(isset($_POST['titulo']))
 				require_once('editarContenidoDBA.php');
 			else{
-				$query = $db->query("SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre) AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre) AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre) AS Temas  FROM Contenido
+				$query = $db->query("SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre SEPARATOR ', ') AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre SEPARATOR ', ') AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre SEPARATOR ', ') AS Temas  FROM Contenido
 										JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
 										JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
 										JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
@@ -110,7 +110,7 @@
 				</div>
 				<div class="checkbox">
 					<label>
-						<input type="checkbox" name="grande"> Grande
+						<input type="checkbox" name="grande" <?=(($res->Grande)?'checked':'');?>> Grande
 					</label>
 				</div>
 				<button type="submit" class="btn btn-default">Enviar</button>
