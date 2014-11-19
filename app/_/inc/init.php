@@ -31,4 +31,7 @@
     	die("Connection failed: " . $db->connect_error);
 	}
 	session_start();
+	
+	//Other vars
+	$tiempoRenta = new DateInterval('P1W');
 ?>
