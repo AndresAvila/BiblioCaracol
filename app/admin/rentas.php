@@ -1,44 +1,56 @@
 <?php require($_SERVER['DOCUMENT_ROOT'] . '/_/inc/init.php'); ?>
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js ie ie7 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js ie ie8 lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <html class="no-js ie ie9 lt-ie10"> <![endif]-->
+<!--[if lt IE 7]>     <html class="no-js ie ie6 lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>       <html class="no-js ie ie7 lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>       <html class="no-js ie ie8 lt-ie9"> <![endif]-->
+<!--[if IE 9]>       <html class="no-js ie ie9 lt-ie10"> <![endif]-->
 <!--[if gt IE 9]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-    <title>Centro Cultural Caracol</title>
+ <title></title>
     <meta name="description" content="">
     <?php require("_/inc/head.php"); ?>
-
-    <link rel="stylesheet" href="/_/css/table.css">
-
+    <!-- build:css({.tmp,app}) /_/css/table.css -->
+        <link rel="stylesheet" href="/_/css/table.css">
+    <!-- endbuild -->
 </head>
 <body>
-	<?php require('_/inc/header.php'); ?>
+    <?php require('_/inc/header.php'); ?>
     <div id="PageBody">
-        <table>
-            <tr>
-                <th>id Préstamo</th>
-                <th>Título</th>
-                <th>Fecha Préstamo</th>
-                <th>Fecha Devuelto</th>
-            </tr>
-        <?php
-            $query = $db->query("SELECT Prestamos.*, Contenido.Nombre 
-                    FROM Contenido, Prestamos_has_Copia, Usuarios, Prestamos
-                    WHERE Usuarios.idUsuario = Prestamos.Usuarios_idUsuario
-                    AND Prestamos.idPrestamo = Prestamos_has_Copia.Prestamos_idPrestamo
-                    AND Prestamos_has_Copia.Copia_Contenido_idContenido = Contenido.idContenido");
-            while($res = $query->fetch_object()){ ?>
-            <tr>
-                <td><?=$res->idPrestamo;?></td>
-                <td><?=$res->Nombre;?></td>
-                <td><?=$res->FechaPrestamo;?></td>    
-                <td><?=$res->FechaDevuelto;?></td>
-            </tr>
-        <?php }
-        ?>
-        </table>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2>Rentas actuales</h2>
+                </div>
+            </div>
+            <div class="row">
+                <table>
+                    <tr>
+                        <th>Título</th>
+                        <th>Fecha Préstamo</th>
+                        <th>Fecha Devolución</th>
+                        <th>Nombre</th>
+                    </tr>
+                        <?php $query = $db->query("SELECT Prestamos.*, Contenido.Nombre, Usuarios.Nombre AS nombreUsuario
+                            FROM 
+                                Prestamos 
+                                JOIN Usuarios ON Usuarios_idUsuario = Usuarios.idUsuario
+                                JOIN Prestamos_has_Copia ON Prestamos.idPrestamo = Prestamos_has_Copia.Prestamos_idPrestamo
+                                JOIN Contenido ON Prestamos_has_Copia.Copia_Contenido_idContenido = Contenido.idContenido
+                            WHERE FechaDevuelto IS NULL");
+                        while($res = $query->fetch_object()){ ?>
+                    <tr>
+                        <td><?=$res->Nombre;?></td>
+                        <td><?=(new DateTime($res->FechaPrestamo))->format('d/m/y');?></td>
+                        <?php $devolucion = new DateTime($res->FechaPrestamo);
+                            $devolucion->add($tiempoRenta);
+                        echo '<td>'.$devolucion->format('d/m/y').'</td>'; ?>
+                        <td><?=$res->nombreUsuario;?></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+            </div>
+           
+        </div>
     </div>
 
     <!--[if lt IE 9]>
@@ -51,10 +63,8 @@
 
     <!-- JAVASCRIPT -->
     <?php require('_/inc/analytics.php'); ?>
-		
+        
     <?php require('_/inc/tail.php'); ?>
-	<!-- build:js /_/js/index.js -->
-		<script src="/_/js/busqueda.js"></script>
-	<!-- endbuild -->
+
 </body>
 </html>
