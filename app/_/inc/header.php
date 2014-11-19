@@ -87,13 +87,12 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Administración <span class="caret"></span></a>
 								<ul class="dropdown-menu" role="menu">
 									<li><a href="/admin/nuevoContenido">Nuevo Contenido</a></li>
-									<li><a href="/admin/editarContenido">Editar Contenido</a></li>
 									<li class="divider"></li>
 									<li><a href="/admin/rentas">Rentas</a></li>
 									<li><a href="/admin/pedidos">Pedidos</a></li>
 									<li class="divider"></li>
 									<li><a href="/encuentraUsuario?accion=Modificar&siguiente=/admin/cambiarContrasena">Cambiar contraseña a usuario</a></li>
-									<li><a href="/admin/modificarUsuario">Modificar usuario</a></li>
+									<li><a href="/encuentraUsuario?accion=Modificar&siguiente=/admin/modificarUsuario">Modificar usuario</a></li>
 								</ul>
 							</li>
 						<?php }
