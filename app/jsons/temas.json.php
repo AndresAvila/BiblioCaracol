@@ -4,7 +4,7 @@
 	$query = $db->query("SELECT * FROM Temas");
 	$rows = $query->num_rows;
 
-	header('Content-Type: application/json');
+	header('Content-Type: application/json; charset=utf-8');
 
 	$tipos = array();
 
