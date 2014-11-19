@@ -29,6 +29,7 @@
                         <th>Fecha Préstamo</th>
                         <th>Fecha Devolución</th>
                         <th>Nombre</th>
+                        <th>Devolver</th>
                     </tr>
                         <?php $query = $db->query("SELECT Prestamos.*, Contenido.Nombre, Usuarios.Nombre AS nombreUsuario
                             FROM 
@@ -45,6 +46,7 @@
                             $devolucion->add($tiempoRenta);
                         echo '<td>'.$devolucion->format('d/m/y').'</td>'; ?>
                         <td><?=$res->nombreUsuario;?></td>
+                        <td><a href = "/devolver?idPrestamo=<?=$res->idPrestamo;?>">Devolver</a></td>
                     </tr>
                     <?php } ?>
                 </table>
