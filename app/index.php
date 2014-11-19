@@ -29,6 +29,8 @@
 								<option>Autores</option>
 								<option>Temas</option>
 								<option>Generos</option>
+								<option>Idioma</option>
+								<option>Edades</option>
 							</select>
 						</div>
 						<div class="col-md-5">

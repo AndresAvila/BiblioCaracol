@@ -27,12 +27,13 @@
 				<th>Fecha de Publicación</th>
 				<th>Generos</th>
 				<th>Temas</th>
+				<th>Edades</th>
 			</tr>
 		<?php
 			$string = 'select * from (select Contenido.Nombre as Nombre, GROUP_CONCAT(DISTINCT Autores.Nombre) as Autores, Contenido.Tipo as Tipo, 
 Contenido.Editorial as Editorial, Contenido.UPC as UPC, Contenido.Idioma as Idioma, 
 Contenido.FechaPublicacion as FechaPublicacion, GROUP_CONCAT(DISTINCT Generos.Nombre) as Generos, 
-GROUP_CONCAT(DISTINCT Temas.Nombre) as Temas from Contenido
+GROUP_CONCAT(DISTINCT Temas.Nombre) as Temas, Contenido.PublicoMeta as Edades from Contenido
 LEFT JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
 LEFT JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
 LEFT JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
@@ -52,6 +53,7 @@ Group By idContenido)';
 					<td><?=$res->FechaPublicacion;?></td>
 					<td><?=$res->Generos;?></td>
 					<td><?=$res->Temas;?></td>
+					<td><?=$res->Edades;?></td>
 				</tr>
 			<?php }
 		?>
