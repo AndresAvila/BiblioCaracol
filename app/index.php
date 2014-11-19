@@ -25,7 +25,7 @@
 						<div class="col-md-2 col-md-offset-2">
 							<select class="form-control" name="tipo1">
 								<option>Todo</option>
-								<option>Titulo</option>
+								<option value="Nombre">Titulo</option>
 								<option>Autor</option>
 								<option>Tema</option>
 								<option>Genero</option>
