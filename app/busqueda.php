@@ -19,25 +19,35 @@
 		<table>
 			<tr>
 				<th>Nombre</th>
-				<th>Autor</th>
+				<th>Autores</th>
 				<th>Tipo</th>
 				<th>Editorial</th>
 				<th>ISBN</th>
 				<th>Idioma</th>
 				<th>Fecha de Publicación</th>
+				<th>Generos</th>
+				<th>Temas</th>
 			</tr>
 		<?php
-			$string = 'select * from (SELECT Nombre, (select a.Nombre from Autores a, Autores_has_Contenido ac where a.idAutor = ac.Autores_idAutor and ac.Contenido_idContenido = c.idContenido) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido c)';
+			$string = 'select * from (SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre) AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre) AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre) AS Temas  FROM Contenido
+JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
+JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
+JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
+JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
+JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
+JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema)';
 			$query = $db->query( $string.'o where o.'.checkInput($_POST['tipo1']).' like "%'.checkInput($_POST['texto1']).'%"');
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->Nombre;?></td>
-					<td><?=$res->Autor?></td>
+					<td><?=$res->Autores?></td>
 					<td><?=$res->Tipo;?></td>
 					<td><?=$res->Editorial;?></td>
 					<td><?=$res->UPC;?></td>
 					<td><?=$res->Idioma;?></td>
 					<td><?=$res->FechaPublicacion;?></td>
+					<td><?=$res->Generos;?></td>
+					<td><?=$res->Temas;?></td>
 				</tr>
 			<?php }
 		?>

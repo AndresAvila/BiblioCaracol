@@ -26,9 +26,9 @@
 							<select class="form-control" name="tipo1">
 								<option>Todo</option>
 								<option value="Nombre">Titulo</option>
-								<option>Autor</option>
-								<option>Tema</option>
-								<option>Genero</option>
+								<option>Autores</option>
+								<option>Temas</option>
+								<option>Generos</option>
 							</select>
 						</div>
 						<div class="col-md-5">
