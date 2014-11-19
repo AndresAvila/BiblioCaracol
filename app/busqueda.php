@@ -29,13 +29,17 @@
 				<th>Temas</th>
 			</tr>
 		<?php
-			$string = 'select * from (SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre) AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre) AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre) AS Temas  FROM Contenido
-JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
-JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
-JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
-JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
-JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
-JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema)';
+			$string = 'select * from (select Contenido.Nombre as Nombre, GROUP_CONCAT(DISTINCT Autores.Nombre) as Autores, Contenido.Tipo as Tipo, 
+Contenido.Editorial as Editorial, Contenido.UPC as UPC, Contenido.Idioma as Idioma, 
+Contenido.FechaPublicacion as FechaPublicacion, GROUP_CONCAT(DISTINCT Generos.Nombre) as Generos, 
+GROUP_CONCAT(DISTINCT Temas.Nombre) as Temas from Contenido
+LEFT JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
+LEFT JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
+LEFT JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
+LEFT JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
+LEFT JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
+LEFT JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema
+Group By idContenido)';
 			$query = $db->query( $string.'o where o.'.checkInput($_POST['tipo1']).' like "%'.checkInput($_POST['texto1']).'%"');
 			while($res = $query->fetch_object()){ ?>
 				<tr>
