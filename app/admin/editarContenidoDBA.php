@@ -36,19 +36,24 @@ foreach($temas as $nombreTema){
 	}
 }
 
-$query = $db->query('INSERT INTO Contenido (Nombre, Tipo, UPC, Editorial, Idioma, FechaPublicacion, PublicoMeta, URLPortada, Grande) VALUES('
-	.'\''.checkInput($_POST['titulo']).'\','
-	.'\''.checkInput($_POST['tipo']).'\','
-	.'\''.checkInput($_POST['upc']).'\','
-	.'\''.checkInput($_POST['editorial']).'\','
-	.'\''.checkInput($_POST['idioma']).'\','
-	.'\''.checkInput($_POST['fechaPublicacion']).'\','
-	.'\''.checkInput($_POST['edad']).'\','
-	.'\''.checkInput($_POST['portada']).'\','
-	.'\''.(isset($_POST['grande'])?1:0).'\')');
+$query = $db->query('UPDATE Contenido SET
+	Nombre = \''.checkInput($_POST['titulo']).'\',
+	Tipo = \''.checkInput($_POST['tipo']).'\',
+	UPC = \''.checkInput($_POST['upc']).'\',
+	Editorial = \''.checkInput($_POST['editorial']).'\',
+	Idioma = \''.checkInput($_POST['idioma']).'\',
+	FechaPublicacion = \''.checkInput($_POST['fechaPublicacion']).'\',
+	PublicoMeta = \''.checkInput($_POST['edad']).'\',
+	URLPortada = \''.checkInput($_POST['portada']).'\',
+	Grande = \''.(isset($_POST['grande'])?1:0).'\'
+	WHERE idContenido = \''.checkInput($_POST['idContenido']).'\'');
 
 if($query){
-	$idContenido = $db->insert_id;
+	$idContenido = checkInput($_POST['idContenido']);
+	
+	$db->query("DELETE FROM Autores_has_Contenido WHERE Contenido_idContenido = '$idContenido'");
+	$db->query("DELETE FROM Contenido_has_Generos WHERE Contenido_idContenido = '$idContenido'");
+	$db->query("DELETE FROM Contenido_has_Temas WHERE Contenido_idContenido = '$idContenido'");
 	foreach($autoresId as $idAutor)
 		$query = $db->query("INSERT INTO Autores_has_Contenido (Autores_idAutor, Contenido_idContenido) VALUES ('$idAutor', '$idContenido')");
 	foreach($generosId as $idGenero)
@@ -56,10 +61,7 @@ if($query){
 	foreach($temasId as $idTema)
 		$query = $db->query("INSERT INTO Contenido_has_Temas (Temas_idTema, Contenido_idContenido) VALUES ('$idTema', '$idContenido')");
 	
-	echo 'Contenido agregado correctamente';
+	echo 'Contenido editado correctamente';
 }else if($db->errno == 1062){
-	$queryLibroExistente = $db->query("SELECT idContenido, Nombre FROM Contenido WHERE UPC = '".checkInput($_POST['upc'])."'");
-	$res = $queryLibroExistente->fetch_object();
-
-	echo $res->Nombre.' ya existe, ¿deseas <a href="/admin/editarContenido?idContenido='.$res->idContenido.'">editarlo</a>?';
+	echo ':(';
 }

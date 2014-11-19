@@ -40,6 +40,7 @@
 				</div>
 			</div>
 			<form role="form" method="post" >
+				<input type="hidden" name="idContenido" value="<?=$res->idContenido;?>" />
 				<div class="form-group">
 					<label for="upc">UPC / ISBN</label>
 					<input type="text" class="form-control" name="upc" id="upc" value="<?=$res->UPC;?>">
