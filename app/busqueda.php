@@ -15,7 +15,7 @@
 </head>
 <body>
 	<?php require('_/inc/header.php'); ?>
-	<div id="PageBody">
+	<div id="PageBody" class = "text-center">
 		<table>
 			<tr>
 				<th>Nombre</th>
