@@ -27,7 +27,7 @@
 				<th>Fecha de Publicación</th>
 			</tr>
 		<?php
-			$query = $db->query('select * from (SELECT Nombre, (select a.Nombre from Autores a where a.idAutor = Contenido.Autores_idAutor) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido) o where o.Autor like "%'.checkInput($_POST['texto1']).'%"');
+			$query = $db->query('select * from (SELECT Nombre, (select a.Nombre from Autores a, Autores_has_Contenido ac where a.idAutor = ac.Autores_idAutor and ac.Contenido_idContenido = c.idContenido) as Autor, Tipo, Editorial, UPC, Idioma, FechaPublicacion FROM Contenido c) o where o.Autor like "%'.checkInput($_POST['texto1']).'%"');
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->Nombre;?></td>
