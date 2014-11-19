@@ -45,7 +45,31 @@ LEFT JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
 LEFT JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
 LEFT JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema
 Group By idContenido)';
-			$query = $db->query( $string.'o where o.'.checkInput($_POST['tipo1']).' like "%'.checkInput($_POST['texto1']).'%"');
+$whereString = 'o where o.'.checkInput($_POST['tipo1']).' like "%'.checkInput($_POST['texto1']).'%"';
+			if(isset($_POST['tipo2'])) {
+					$whereString .= ' and o.'.checkInput($_POST['tipo2']).' like "%'.checkInput($_POST['texto2']).'%"';
+					}
+			if(isset($_POST['tipo3'])) {
+					$whereString .= ' and o.'.checkInput($_POST['tipo3']).' like "%'.checkInput($_POST['texto3']).'%"';
+					}
+			if(isset($_POST['tipo4'])) {
+					$whereString .= ' and o.'.checkInput($_POST['tipo4']).' like "%'.checkInput($_POST['texto4']).'%"';
+					}
+			if(isset($_POST['tipo5'])) {
+					$whereString .= ' and o.'.checkInput($_POST['tipo5']).' like "%'.checkInput($_POST['texto5']).'%"';
+					}
+			if(isset($_POST['tipo6'])) {
+					$whereString .= ' and o.'.checkInput($_POST['tipo6']).' like "%'.checkInput($_POST['texto6']).'%"';
+					}
+			if($_POST['tipo1'] == 'Todo') {
+					$whereString = 'o where o.Nombre like "%'.checkInput($_POST['texto1']).'%" or 
+					o.Autores like "%'.checkInput($_POST['texto1']).'%" or o.Tipo like "%'.checkInput($_POST['texto1']).'%"
+					or o.Editorial like "%'.checkInput($_POST['texto1']).'%" or o.UPC like "%'.checkInput($_POST['texto1']).'%"
+					or o.Idioma like "%'.checkInput($_POST['texto1']).'%" or o.FechaPublicacion like "%'.checkInput($_POST['texto1']).'%"
+					or o.Generos like "%'.checkInput($_POST['texto1']).'%" or o.Temas like "%'.checkInput($_POST['texto1']).'%"
+					or o.Edades like "%'.checkInput($_POST['texto1']).'%"';
+					}
+			$query = $db->query( $string.$whereString );
 			while($res = $query->fetch_object()){ ?>
 				<tr>
 					<td><?=$res->Nombre;?></td>
