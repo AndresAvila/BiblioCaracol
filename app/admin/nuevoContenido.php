@@ -62,8 +62,14 @@
 					<p class="help-block">El púlico principal para este contenido.</p>
 				</div>
 				<div class="form-group">
-					<label for="tema">Tema</label>
-					<input type="text" name="tema" class="form-control" >
+					<label for="temas">Temas</label>
+					<input type="text" name="temas" class="form-control" >
+					<p class="help-block">Cada tema debe de ir separado por una coma.</p>
+				</div>
+				<div class="form-group">
+					<label for="generos">Generos</label>
+					<input type="text" name="generos" class="form-control" >
+					<p class="help-block">Cada generos debe de ir separado por una coma.</p>
 				</div>
 				<div class="form-group">
 					<label for="editorial">Editorial</label>
