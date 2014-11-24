@@ -373,7 +373,22 @@ module.exports = function (grunt) {
                 //~ 'svgmin',
                 'htmlmin'
             ]
-        }
+        },
+        
+        buildcontrol: {
+			options: {
+			  dir: 'dist',
+			  commit: true,
+			  push: true,
+			  message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+			},
+			dh: {
+			  options: {
+				remote: 'ktlxv_ccc@kneecap.dreamhost.com:ccc.i2d.in.git',
+				branch: 'master'
+			  }
+			}
+		}
     });
     // END INITCONFIG()
 
@@ -428,7 +443,6 @@ module.exports = function (grunt) {
         'usemin',
         'processhtml:dist'
     ]);
-
 
     // DEFAULT
     //  The default task is run whenever no other task is provided. Here,
