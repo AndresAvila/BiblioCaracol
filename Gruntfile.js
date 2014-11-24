@@ -344,7 +344,7 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,png,txt}',
                         '.htaccess',
-                        '_/img/**/*.{webp,gif}',
+                        '_/img/**/*.{webp,gif,svg}',
                         '_/foundation/images/**/*.{png,jpg,gif}',
                         '_/css/fonts/*',
                         '**/*.php'
@@ -370,7 +370,7 @@ module.exports = function (grunt) {
             dist: [
                 'compass',
                 'imagemin',
-                'svgmin',
+                //~ 'svgmin',
                 'htmlmin'
             ]
         }
@@ -424,7 +424,7 @@ module.exports = function (grunt) {
         'cssmin',
         'uglify',
         'copy:dist',
-        'rev',
+        //~ 'rev',
         'usemin',
         'processhtml:dist'
     ]);
