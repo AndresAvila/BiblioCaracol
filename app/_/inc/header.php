@@ -92,7 +92,6 @@
 									<li><a href="/admin/pedidos">Pedidos</a></li>
 									<li class="divider"></li>
 									<li><a href="/encuentraUsuario?accion=Modificar&siguiente=/admin/cambiarContrasena">Cambiar contraseña a usuario</a></li>
-									<li><a href="/encuentraUsuario?accion=Modificar&siguiente=/admin/modificarUsuario">Modificar usuario</a></li>
 								</ul>
 							</li>
 						<?php }
