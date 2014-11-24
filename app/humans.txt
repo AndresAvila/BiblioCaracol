@@ -1,0 +1,11 @@
+/* TEAM */
+	Documentation Master: Osmar Hernández
+	Twitter: @1OsmarHernandez
+
+	G.I. Joe: Elí Santiago
+	Twitter: @elisantiago4e
+
+	PHP Padawan: Andrés Avila
+
+	Lead Developer: Jorge Pérez
+	Twitter: @ktl_xv
