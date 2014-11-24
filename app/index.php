@@ -27,6 +27,7 @@
 								<option>Todo</option>
 								<option value="Nombre">Titulo</option>
 								<option>Autores</option>
+								<option>Editorial</option>
 								<option>Temas</option>
 								<option>Generos</option>
 								<option>Idioma</option>

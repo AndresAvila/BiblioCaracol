@@ -36,11 +36,20 @@ foreach($temas as $nombreTema){
 	}
 }
 
-$query = $db->query('INSERT INTO Contenido (Nombre, Tipo, UPC, Editorial, Idioma, FechaPublicacion, PublicoMeta, URLPortada, Grande) VALUES('
+$editorial = checkInput($_POST['editorial']);
+$queryEditorialExistente = $db->query("SELECT idEditorial FROM Editorial WHERE Nombre = '$editorial'");
+if($queryEditorialExistente->num_rows == 1)
+	$editorialId = $queryEditorialExistente->fetch_object()->idEditorial;
+else{
+	$queryEditorial = $db->query("INSERT INTO Editorial (Nombre) VALUES ('$editorial')");
+	$editorialId = $db->insert_id;
+}
+
+$query = $db->query('INSERT INTO Contenido (Nombre, Tipo, UPC, Editorial_idEditorial, Idioma, FechaPublicacion, PublicoMeta, URLPortada, Grande) VALUES('
 	.'\''.checkInput($_POST['titulo']).'\','
 	.'\''.checkInput($_POST['tipo']).'\','
 	.'\''.checkInput($_POST['upc']).'\','
-	.'\''.checkInput($_POST['editorial']).'\','
+	.'\''.$editorialId.'\','
 	.'\''.checkInput($_POST['idioma']).'\','
 	.'\''.checkInput($_POST['fechaPublicacion']).'\','
 	.'\''.checkInput($_POST['edad']).'\','

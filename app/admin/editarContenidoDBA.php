@@ -36,11 +36,20 @@ foreach($temas as $nombreTema){
 	}
 }
 
+$editorial = checkInput($_POST['editorial']);
+$queryEditorialExistente = $db->query("SELECT idEditorial FROM Editorial WHERE Nombre = '$editorial'");
+if($queryEditorialExistente->num_rows == 1)
+	$editorialId = $queryEditorialExistente->fetch_object()->idEditorial;
+else{
+	$queryEditorial = $db->query("INSERT INTO Editorial (Nombre) VALUES ('$editorial')");
+	$editorialId = $db->insert_id;
+}
+
 $query = $db->query('UPDATE Contenido SET
 	Nombre = \''.checkInput($_POST['titulo']).'\',
 	Tipo = \''.checkInput($_POST['tipo']).'\',
 	UPC = \''.checkInput($_POST['upc']).'\',
-	Editorial = \''.checkInput($_POST['editorial']).'\',
+	Editorial_idEditorial = \''.$editorialId.'\',
 	Idioma = \''.checkInput($_POST['idioma']).'\',
 	FechaPublicacion = \''.checkInput($_POST['fechaPublicacion']).'\',
 	PublicoMeta = \''.checkInput($_POST['edad']).'\',

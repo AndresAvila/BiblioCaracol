@@ -36,7 +36,7 @@
 			</tr>
 		<?php
 			$string = 'select * from (select Contenido.Nombre as Nombre, GROUP_CONCAT(DISTINCT Autores.Nombre) as Autores, Contenido.Tipo as Tipo, 
-Contenido.Editorial as Editorial, Contenido.UPC as UPC, Contenido.Idioma as Idioma, 
+Editorial.Nombre as Editorial, Contenido.UPC as UPC, Contenido.Idioma as Idioma, 
 Contenido.FechaPublicacion as FechaPublicacion, GROUP_CONCAT(DISTINCT Generos.Nombre) as Generos, 
 GROUP_CONCAT(DISTINCT Temas.Nombre) as Temas, Contenido.PublicoMeta as Edades, idContenido, urlPortada as Portada from Contenido
 LEFT JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
@@ -45,6 +45,7 @@ LEFT JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos
 LEFT JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
 LEFT JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
 LEFT JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema
+LEFT JOIN Editorial ON Contenido.Editorial_idEditorial = Editorial.idEditorial
 Group By idContenido)';
 $whereString = 'o where o.'.checkInput($_POST['tipo1']).' like "%'.checkInput($_POST['texto1']).'%"';
 			if(isset($_POST['tipo2'])) {

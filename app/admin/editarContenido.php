@@ -18,13 +18,14 @@
 			if(isset($_POST['titulo']))
 				require_once('editarContenidoDBA.php');
 			else{
-				$query = $db->query("SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre SEPARATOR ', ') AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre SEPARATOR ', ') AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre SEPARATOR ', ') AS Temas  FROM Contenido
+				$query = $db->query("SELECT Contenido.*, GROUP_CONCAT(DISTINCT Autores.Nombre SEPARATOR ', ') AS Autores, GROUP_CONCAT(DISTINCT Generos.Nombre SEPARATOR ', ') AS Generos, GROUP_CONCAT(DISTINCT Temas.Nombre SEPARATOR ', ') AS Temas, Editorial.Nombre AS Editorial FROM Contenido
 										JOIN Autores_has_Contenido ON Contenido.idContenido = Autores_has_Contenido.Contenido_idContenido
 										JOIN Autores ON Autores_has_Contenido.Autores_idAutor = Autores.idAutor
 										JOIN Contenido_has_Generos ON Contenido.idContenido = Contenido_has_Generos.Contenido_idContenido
 										JOIN Generos ON Contenido_has_Generos.Generos_idGenero = Generos.idGenero
 										JOIN Contenido_has_Temas ON Contenido.idContenido = Contenido_has_Temas.Contenido_idContenido
 										JOIN Temas ON Contenido_has_Temas.Temas_idTema = Temas.idTema
+										JOIN Editorial ON Contenido.Editorial_idEditorial = Editorial.idEditorial
 									WHERE idContenido = '".checkInput($_GET['idContenido'])."'");
 				$res = $query->fetch_object();
 				?>
