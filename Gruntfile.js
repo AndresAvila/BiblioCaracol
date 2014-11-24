@@ -374,7 +374,7 @@ module.exports = function (grunt) {
                 'htmlmin'
             ]
         },
-        
+
         buildcontrol: {
 			options: {
 			  dir: 'dist',
