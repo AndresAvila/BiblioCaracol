@@ -55,7 +55,7 @@ if($query){
 		$query = $db->query("INSERT INTO Contenido_has_Generos (Generos_idGenero, Contenido_idContenido) VALUES ('$idGenero', '$idContenido')");
 	foreach($temasId as $idTema)
 		$query = $db->query("INSERT INTO Contenido_has_Temas (Temas_idTema, Contenido_idContenido) VALUES ('$idTema', '$idContenido')");
-	echo "INSERT INTO Copia SET Contenido_idContenido = '$idContenido'";
+	$query = $db->query("INSERT INTO Copia SET Contenido_idContenido = '$idContenido'");
 
 	echo 'Contenido agregado correctamente';
 }else if($db->errno == 1062){
