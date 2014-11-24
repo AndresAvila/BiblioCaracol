@@ -77,37 +77,6 @@
   margin: 0;
 }
 </style>
-<script type="text/javascript" src="/_/bower_components/jquery/jquery.js" ></script>
-<script type="text/javascript" src="/_/bower_components/typehead.js/dist/typeahead.bundle.js" ></script>
-<script>
-$( document ).ready(function(){
-	var usuarios = new Bloodhound({
-		datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Nombre'),
-		queryTokenizer: Bloodhound.tokenizers.whitespace,
-		limit: 10,
-		prefetch: {
-			url: '/jsons/encuentraUsuarioDBA.json.php'
-		}
-	});
-
-	usuarios.initialize();
-
-	$('#busqueda').typeahead(null, {
-		name: "usuarios",
-		displayKey: "Nombre",
-		source: usuarios.ttAdapter()
-	}).on('typeahead:selected', function (obj, datum) {
-		$('#idUsuario').val(datum.idUsuario);
-		$("#submit").removeAttr("disabled");
-	}).on('typeahead:opened',function (obj, datum) {
-		$("#submit").attr("disabled", true);
-		$("#busqueda").val("");
-	});
-	$("#form").submit(function (){
-		localStorage.clear();
-	});
-});
-</script>
 </head>
 <body>
 	<?php require('_/inc/header.php'); ?>
@@ -142,6 +111,35 @@ $( document ).ready(function(){
 	<!-- build:js /_/js/index.js -->
 		<script src="/_/js/busqueda.js"></script>
 	<!-- endbuild -->
+	<script>
+		$( document ).ready(function(){
+			var usuarios = new Bloodhound({
+				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('Nombre'),
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				limit: 10,
+				prefetch: {
+					url: '/jsons/encuentraUsuarioDBA.json.php'
+				}
+			});
+
+			usuarios.initialize();
+
+			$('#busqueda').typeahead(null, {
+				name: "usuarios",
+				displayKey: "Nombre",
+				source: usuarios.ttAdapter()
+			}).on('typeahead:selected', function (obj, datum) {
+				$('#idUsuario').val(datum.idUsuario);
+				$("#submit").removeAttr("disabled");
+			}).on('typeahead:opened',function (obj, datum) {
+				$("#submit").attr("disabled", true);
+				$("#busqueda").val("");
+			});
+			$("#form").submit(function (){
+				localStorage.clear();
+			});
+		});
+		</script>
 </body>
 </html>
 
