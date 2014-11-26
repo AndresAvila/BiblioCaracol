@@ -5,7 +5,7 @@
 	G.I. Joe: Elí Santiago
 	Twitter: @elisantiago4e
 
-	PHP Padawan: Andrés Avila
+	Supervisor manager: Andrés Avila
 
 	Lead Developer: Jorge Pérez
 	Twitter: @ktl_xv
