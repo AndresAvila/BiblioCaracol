@@ -547,9 +547,6 @@ FileETag None
 # | No need for PHP extensions                                                 |
 # ------------------------------------------------------------------------------
 
-RewriteEngine On
-
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !\.php$
-RewriteRule ^(.*)$ $1.php [L]
-DirectoryIndex index.php
+RewriteRule (.*) $1.php [L]
